@@ -1,0 +1,27 @@
+[
+  {
+    "Category": "Avg # Physically Unhealthy Days",
+    "King County, WA": 3.24,
+    "McDowell County, WV": 7.21
+  },
+  {
+    "Category": "Avg # Mentally Unhealthy Days",
+    "King County, WA": 3.69,
+    "McDowell County, WV": 7.46
+  },
+  {
+    "Category": "% Fair or Poor Health",
+    "King County, WA": 12.7,
+    "McDowell County, WV": 37.5
+  },
+  {
+    "Category": "% Some College",
+    "King County, WA": 82.11,
+    "McDowell County, WV": 26.78
+  },
+  {
+    "Category": "% Insufficient Sleep",
+    "King County, WA": 30.31,
+    "McDowell County, WV": 47.38
+  }
+]
