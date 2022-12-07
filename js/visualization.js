@@ -1,3 +1,5 @@
+import{RadarChart} from "./radarchart.js"
+
 async function manageVisualizations(){
 
     const size = {
@@ -21,20 +23,25 @@ async function manageVisualizations(){
     //drawBarchart(barchart, stateData, size); // also: barchart.call(drawBarchart, data, size);
     //const histogram = svg.append("g").attr("opacity", 0);
 
-    const graph1 = svg.append("g").attr("opacity", 1);
-    
+    //const graph1 = svg.append("g").attr("opacity", 1);
+    const graph1 = RadarChart().attr("opacity", 0);
+
     const scroll = scroller();
+    
     scroll(d3.selectAll("section"));
     scroll.on("section-change", (section)=>{
       switch(section){
         case 0: // do we even want a bar chart? if we're zooming in on the states anyway...
           //barchart.transition().attr("opacity", 1).duration(speed);
-          graph1.transition().attr("opacity", 1).duration(speed);
+          graph1.transition().attr("opacity", 0).duration(speed);
           break;
         case 1:
+          //RadarChart();
+          graph1.transition().attr("opacity", 1).duration(speed);
           //barchart.transition().attr("opacity", 0).duration(speed);
           break;
         case 2:
+          graph1.transition().attr("opacity", 0).duration(speed);
           break;
         case 3:
           break;
