@@ -35,18 +35,25 @@ function RadarChart() {
 		};
 
 	var data = [
-		[// King County, WA
-		{axis:"% Insufficient Sleep",value:100*3.24/30},
-		{axis:"% No College",value:3.69},
-		{axis:"% Fair or Poor Health",value:12.7},
-		{axis:"Avg % Mentally Unhealthy Days",value:100-82.11},
-		{axis:"Avg % Physically Unhealthy Days",value:30.31}	
-		],[// McDowell County, WV
-		{axis:"% Insufficient Sleep",value:100*7.21/30},
-		{axis:"% No College",value:7.46},
-		{axis:"% Fair or Poor Health",value:37.5},
-		{axis:"Avg % Mentally Unhealthy Days",value:100-26.78},
-		{axis:"Avg % Physically Unhealthy Days",value:47.38}	
+		[// Williams County, ND- Mental health bad days: 3.3
+		{axis:"% Obesity", value: .38},
+		//{axis:"% Some College", value: .61},
+		{axis:"% Unemployed", value: .096},
+		{axis:"% Insufficient Sleep", value: .34},
+		{axis:"% Poverty", value: .098},
+		{axis:"% Sociability", value: .141}
+		
+		],[// McDowell County, WV- Mental health bad days: 7.2
+		{axis:"% Obesity", value: .46},
+		//{axis:"% Some College", value: .27},
+		{axis:"% Unemployed", value: .126},
+		{axis:"% Insufficient Sleep", value: .47},
+		{axis:"% Poverty", value: .376},
+		{axis:"% Sociability", value: .0512}
+		
+		//{axis:"% Fair or Poor Health",value:37.5},
+		//{axis:"Avg % Mentally Unhealthy Days",value:100-26.78},
+		//{axis:"Avg % Physically Unhealthy Days",value:47.38}	
 		]
 	];
 
