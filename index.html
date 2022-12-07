@@ -5,15 +5,34 @@
       <meta charset="UTF-8">
       <title>Project 4</title>
       <script src="https://d3js.org/d3.v7.min.js"></script>
+      <link rel="stylesheet" href="style/scroller.css" /> 
   </head>
   <body>
     <main>
       <div id="content">
      
      
+      
       <div id="sections">
-        
-        <div style="display: flex; align-items: center; justify-content: center;">
+
+        <section>
+          <h2> Nation-wide Choropleths </h2>
+        </section>
+
+        <section>
+          <h2> McDowell vs. Steele County Radar Charts </h2>
+        </section>
+
+        <section>
+          <h2></h2>
+        </section>
+        <section>
+          <h2>Bespoke opportunity or sociability analysis</h2>
+        </section>
+
+        <!--
+        <section>
+          <div style="display: flex; align-items: center; justify-content: center;">
           <div class="radarChart"></div>
 
 		      <script src="src/js/radarchart2.js"></script>	
@@ -33,7 +52,7 @@
             ////////////////////////////////////////////////////////////// 
             ////////////////////////// Data ////////////////////////////// 
             ////////////////////////////////////////////////////////////// 
-            
+
             var data = [
                   [// King County, WA
                   {axis:"% Insufficient Sleep",value:100*3.24/30},
@@ -68,9 +87,13 @@
               //Call function to draw the Radar chart
               RadarChart(".radarChart", data, radarChartOptions);
             </script>
-
+        </section> -->
       </div>
+
+      <div id="vis"></div>
     </div>
     </main>
   </body>
+  <script src="js/scroller.js"></script>
+  <script src="js/visualization.js"></script>
 </html>
