@@ -20,7 +20,7 @@ async function manageVisualizations(){
       .style("width", `${size.width}px`);
     
     var choroData = await d3.csv("../data/stateDataOnly.csv");
-    const graph1 = loadCounties(choroData).attr("opacity", 1);
+    const graph1 = loadCounties(choroData, svg);
 
     const radar = RadarChart(svg, size).attr('opacity', 0);
     
@@ -32,6 +32,7 @@ async function manageVisualizations(){
       switch(section){
         case 0:
           radar.transition().attr("opacity", 0).duration(speed);
+          graph1;
           break;
         case 1:
           //graph1.transition().attr("opacity", 0).duration(speed);
