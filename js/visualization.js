@@ -16,16 +16,20 @@ async function manageVisualizations(){
       .append("svg")
       .attr('id', "vis-container")
       .attr("viewBox", [0, 0, size.width, size.height])
+      //.attr('display', 'flex') not working?
+      //.attr('align-items', 'center')
+      //.attr('justify-content', 'center')
       .style("height", `${size.height}px`)
       .style("width", `${size.width}px`);
     
     var choroData = await d3.csv("../data/stateDataOnly.csv");
     const graph1 = loadCounties(choroData, svg);
-
-    const radar = RadarChart(svg, size).attr('opacity', 0);
+     const radar = RadarChart(svg, size)
+                    .attr('opacity', 0);
     
     var rawbardata = await d3.csv("../data/WilliamsMcDowellBarData.csv");
-    const bar = BarChart(rawbardata, svg, size).attr('opacity', 0);
+    const bar = BarChart(rawbardata, svg, size)
+                  .attr('opacity', 0).attr('transform', "translate(50,150)");
     
     scroll(d3.selectAll("section"));
     scroll.on("section-change", (section)=>{
