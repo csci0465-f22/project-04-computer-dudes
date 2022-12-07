@@ -25,7 +25,7 @@ async function manageVisualizations(){
     //const histogram = svg.append("g").attr("opacity", 0);
 
     //const graph1 = svg.append("g").attr("opacity", 1);
-    const graph1 = Choropleth().attr("opacity", 1);
+    //const graph1 = Choropleth().attr("opacity", 1);
     const graph2 = RadarChart().attr("opacity", 0);
     
     const scroll = scroller();
@@ -35,11 +35,12 @@ async function manageVisualizations(){
       switch(section){
         case 0: // do we even want a bar chart? if we're zooming in on the states anyway...
           //barchart.transition().attr("opacity", 1).duration(speed);
-          graph1.transition().attr("opacity", 1).duration(speed);
+          //graph1.transition().attr("opacity", 1).duration(speed);
+          graph2.transition().attr("opacity", 0).duration(speed);
           break;
         case 1:
           //RadarChart();
-          graph1.transition().attr("opacity", 0).duration(speed);
+          //graph1.transition().attr("opacity", 0).duration(speed);
           graph2.transition().attr("opacity", 1).duration(speed);
           //barchart.transition().attr("opacity", 0).duration(speed);
           break;

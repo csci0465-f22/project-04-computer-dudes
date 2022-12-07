@@ -149,8 +149,8 @@ function RadarChart() {
 	   .attr("y", function(d){return -d*radius/cfg.levels;})
 	   .attr("dy", "0.4em")
 	   .style("font-size", "10px")
-	   .attr("fill", "#737373")
-	   .text(function(d,i) { return Format(maxValue * d/cfg.levels); });
+	   .attr("fill", "white")
+	   .text(function(d,i) { return Format((maxValue * d/cfg.levels)); });
 
 	/////////////////////////////////////////////////////////
 	//////////////////// Draw the axes //////////////////////
@@ -180,6 +180,7 @@ function RadarChart() {
 		.attr("dy", "0.35em")
 		.attr("x", function(d, i){ return rScale(maxValue * cfg.labelFactor) * Math.cos(angleSlice*i - Math.PI/2); })
 		.attr("y", function(d, i){ return rScale(maxValue * cfg.labelFactor) * Math.sin(angleSlice*i - Math.PI/2); })
+		.attr("fill", "white")
 		.text(function(d){return d})
 		.call(wrap, cfg.wrapWidth);
 
