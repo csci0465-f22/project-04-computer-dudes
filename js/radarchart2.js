@@ -7,6 +7,7 @@
 // https://gist.github.com/nbremer/21746a9668ffdf6d8242#file-radarchart-js
 	
 function RadarChart(id, data, options) {
+
 	var cfg = {
 	 w: 600,				//Width of the circle
 	 h: 600,				//Height of the circle
@@ -272,4 +273,51 @@ function RadarChart(id, data, options) {
 	  });
 	}//wrap	
 	
-}//RadarChart
+}
+/* Radar chart design created by Nadieh Bremer - VisualCinnamon.com */
+
+////////////////////////////////////////////////////////////// 
+//////////////////////// Set-Up ////////////////////////////// 
+////////////////////////////////////////////////////////////// 
+
+var margin = {top: 100, right: 100, bottom: 100, left: 100},
+	width = Math.min(700, window.innerWidth - 10) - margin.left - margin.right,
+	height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
+	
+////////////////////////////////////////////////////////////// 
+////////////////////////// Data ////////////////////////////// 
+////////////////////////////////////////////////////////////// 
+
+var data = [
+		[// King County, WA
+		{axis:"% Insufficient Sleep",value:100*3.24/30},
+		{axis:"% No College",value:3.69},
+		{axis:"% Fair or Poor Health",value:12.7},
+		{axis:"Avg % Mentally Unhealthy Days",value:100-82.11},
+		{axis:"Avg % Physically Unhealthy Days",value:30.31}	
+		],[// McDowell County, WV
+		{axis:"% Insufficient Sleep",value:100*7.21/30},
+		{axis:"% No College",value:7.46},
+		{axis:"% Fair or Poor Health",value:37.5},
+		{axis:"Avg % Mentally Unhealthy Days",value:100-26.78},
+		{axis:"Avg % Physically Unhealthy Days",value:47.38}	
+		]
+		];
+	////////////////////////////////////////////////////////////// 
+	//////////////////// Draw the Chart ////////////////////////// 
+	////////////////////////////////////////////////////////////// 
+
+	var color = d3.scaleOrdinal()
+	.range(["#EDC951","#CC333F","#00A0B0"]);
+	
+	var radarChartOptions = {
+	w: width,
+	h: height,
+	margin: margin,
+	maxValue: 0.5,
+	levels: 5,
+	roundStrokes: true,
+	color: color
+	};
+	//Call function to draw the Radar chart
+	RadarChart(".radarChart", data, radarChartOptions);
