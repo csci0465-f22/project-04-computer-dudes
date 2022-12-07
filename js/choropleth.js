@@ -93,5 +93,7 @@ function Choropleth(data, {
         .attr("stroke-opacity", strokeOpacity)
         .attr("d", path(borders));
   
-    return Object.assign(svg.node(), {scales: {color}});
+    return(svg)
+    //return Object.assign(svg.node(), {scales: {color}});
   }
+  export{Choropleth}
