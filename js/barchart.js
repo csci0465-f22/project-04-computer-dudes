@@ -14,6 +14,34 @@ function genChart(data, dom, svg, size, color, yTitle, yTitleOffset){
     .domain(dom)
     .range([height - margin.bottom, margin.top]);
   
+    // gradient code based off https://stackoverflow.com/questions/39023154/how-to-make-a-color-gradient-bar-using-d3js
+    var defs = svg.append('defs');
+    var lg = defs.append('linearGradient')
+     .attr('id', 'Gradient1')
+     .attr('x1', 0)
+     .attr('x2', 0)
+     .attr('y1', 0)
+     .attr('y2', 1);
+    lg.append('stop')
+     .attr('offset', '10%')
+     .attr('stop-color', 'green');
+    lg.append('stop')
+     .attr('offset', '100%')
+     .attr('stop-color', '#ff3c00');
+    
+    var lg2 = defs.append('linearGradient')
+     .attr('id', 'Gradient2')
+     .attr('x1', 0)
+     .attr('x2', 0)
+     .attr('y1', 0)
+     .attr('y2', 1);
+    lg2.append('stop')
+     .attr('offset', '10%')
+     .attr('stop-color', '#906216');
+    lg2.append('stop')
+     .attr('offset', '100%')
+     .attr('stop-color', '#ff3c00');
+  
   g.selectAll("rect") // can add a class here to add :hover customization?
     .data(data)
     .join("rect")
@@ -21,7 +49,9 @@ function genChart(data, dom, svg, size, color, yTitle, yTitleOffset){
     .attr("y", d => y(+d.value))
     .attr("width", (yTitle === "Avg. Work Week (h)") ? x.bandwidth()-50 : x.bandwidth()-10)
     .attr("height", d=> y(dom[1]-d.value)-margin.top)
-    .style("fill", color)
+    .style("fill", d=>(yTitle === "Job Satisfaction") ? 
+                    ((+d.value > 6) ? "url(#Gradient1)": "url(#Gradient2)"):color)
+
     .each(function(d) {
       if(yTitle === 'Average Travel Time to Work (min)'){
         for (let i = y(+d.value)+5; i < height - margin.bottom-20; i+=40) {
