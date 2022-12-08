@@ -24,13 +24,15 @@ async function manageVisualizations(){
       .style("width", `${size.width}px`);
     
     var choroData = await d3.csv("../data/County_Data.csv");
-    const choromap = loadCounties(choroData, svg);
-     const radar = RadarChart(svg, size)
+    const choromap = await loadCounties(choroData, svg);
+    choromap.attr('opacity', 1);
+
+    const radar = RadarChart(svg, size)
                     .attr('opacity', 0);
     
     var rawbardata = await d3.csv("../data/WilliamsMcDowellBarData.csv");
     const bar = BarChart(rawbardata, svg, size)
-                  .attr('opacity', 0).attr('transform', "translate(50,150)");
+                  .attr('opacity', 0).attr('transform', "translate(0,0)");
     
     const socialChart = svg.append('g')
     drawSocial(socialChart, size).attr('opacity', 0)
@@ -40,23 +42,22 @@ async function manageVisualizations(){
       switch(section){
         case 0:
           radar.transition().attr("opacity", 0).duration(speed);
-          choromap;
+          choromap.transition().attr('opacity', 1).duration(speed);
           break;
         case 1:
           //choromap.transition().attr("opacity", 0).duration(speed);
           radar.transition().attr("opacity", 1).duration(speed);
           socialChart.transition().attr("opacity", 0).duration(speed)
+          choromap.transition().attr('opacity', 0).duration(speed);
           break;
         case 2:
           radar.transition().attr("opacity", 0).duration(speed);
           bar.transition().attr("opacity", 0).duration(speed);
-          socialChart.transition().attr("opacity", 1).duration(speed)
-          console.log(socialChart)
-          console.log(2)
+          socialChart.transition().attr("opacity", 1).duration(speed);
           break;
         case 3:
           bar.transition().attr("opacity", 1).duration(speed);
-          socialChart.transition().attr("opacity", 0).duration(speed)
+          socialChart.transition().attr("opacity", 0).duration(speed);
           break;
           //console.log("uh");
       }
@@ -72,8 +73,8 @@ async function loadCounties(data, svg) {
   const statemap = new Map(states.features.map(d => [d.id,d]));
   const statemesh = topojson.mesh(us, us.objects.states, (a, b) => a !== b);
   const newdata = data.filter(function(d){ return (d.State ==  "North Dakota" | d.State == "West Virginia")});
-
-  return Choropleth(newdata, svg, {
+  
+  var choro =  Choropleth(newdata, svg, {
     id: d => d["FIPS"],
     value: d => d["Average Number of Mentally Unhealthy Days"],
     scale: d3.scaleQuantize,
@@ -85,4 +86,5 @@ async function loadCounties(data, svg) {
     width: 975,
     height: 610
   });
+  return(choro);
 }

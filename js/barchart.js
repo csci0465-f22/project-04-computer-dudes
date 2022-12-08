@@ -21,7 +21,7 @@ function genChart(data, dom, svg, size, color, yTitle, yTitleOffset){
     .attr("y", d => y(+d.value))
     .attr("width", x.bandwidth()-10)
     .attr("height", d=> y(dom[1]-d.value)-margin.top)
-    .style("fill", 'grey')
+    .style("fill", color)
     .each(function(d) {
       if(yTitle === 'Average Travel Time to Work (min)'){
         for (let i = y(+d.value)+5; i < height - margin.bottom-20; i+=40) {
@@ -52,6 +52,10 @@ function genChart(data, dom, svg, size, color, yTitle, yTitleOffset){
             .attr("width", "67px")
             .attr("href", "./data/icons8-stack-of-money-96.png");
       }
+      else if(yTitle === "Avg. Work Week (h)"){
+      }
+      else if(yTitle === "Job Satisfaction"){
+      }
     })
     //.each(addArt(g, d => x(d.title), d => y(+d.value), x.bandwidth));
   
@@ -59,13 +63,13 @@ function genChart(data, dom, svg, size, color, yTitle, yTitleOffset){
   const xAxis = g.append("g")
     .attr("transform", `translate(0, ${height - margin.bottom})`)
     .call(d3.axisBottom(x))
-    .attr('color', 'white');
+    .attr('color', 'white')
     /*.selectAll("text")
       .style("text-anchor", "end")
-      .attr("dx", "-.8em")
-      .attr("dy", "-.6em")
-      .attr("transform", function (d) {
-      return "rotate(-90)"});*/
+      .attr("dx", "2.5em")
+      .attr("dy", "1em");
+      //.attr("transform", function (d) {
+      //return "rotate(-90)"});*/
   const yAxis = g.append("g")
     .attr("transform", `translate(${margin.left}, 0)`)
     .call(d3.axisLeft(y))
@@ -119,11 +123,39 @@ export function BarChart(rawdata, svg, size){
             value: +rawdata[1].travelTime
         }
     ];
+    var hoursData =
+    [
+        {
+            title: "North Dakota",
+            value: +rawdata[0].workWeek
+        },
+        {
+            title: "West Virginia",
+            value: +rawdata[1].workWeek
+        }
+    ];
+    var satisData =
+    [
+        {
+            title: "North Dakota",
+            value: +rawdata[0].jobSatisfaction
+        },
+        {
+            title: "West Virginia",
+            value: +rawdata[1].jobSatisfaction
+        }
+    ];
+
+    // job satisfaction
 
     var g = svg.append("g").attr('id', 'g-container');
-    genChart(incomeData, [0, 100000], g, {width: size.width/2, height: size.height*4/5}, 'green', 'Median Household Income ($)', 340)
-            .attr('transform',"translate(0,0)");
-    genChart(travelData, [0, 60], g, {width: size.width/2, height: size.height*4/5}, 'gray', 'Average Travel Time to Work (min)', 320)
-            .attr('transform',"translate(300,0)");
+    genChart(incomeData, [0, 100000], g, {width: size.width/2, height: size.height*3/5}, 'green', 'Median Household Income ($)', 270)
+            .attr('transform',"translate(0, 0)");
+    genChart(travelData, [0, 60], g, {width: size.width/2, height: size.height*3/5}, 'gray', 'Average Travel Time to Work (min)', 250)
+            .attr('transform',"translate(300, 0)");
+    genChart(hoursData, [0, 50], g, {width: size.width/2, height: size.height*3/5}, 'lightblue', 'Avg. Work Week (h)', 270)
+            .attr('transform',"translate(0, 340)");
+    genChart(satisData, [0, 10], g, {width: size.width/2, height: size.height*3/5}, '#ffc43a', 'Job Satisfaction', 270)
+            .attr('transform',"translate(300, 340)");        
     return(g);
 }
