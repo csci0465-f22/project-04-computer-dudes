@@ -27,7 +27,8 @@ function Choropleth(data, svg, {
     
     //Initiate the choropleth SVG
     var g = svg.append("g")
-                .attr('id', 'choro');
+                .attr('id', 'choro')
+                .attr('transform', `translate(-200)`);
 
     // Compute values.
     const N = d3.map(data, id);
@@ -99,6 +100,5 @@ function Choropleth(data, svg, {
         .attr("d", path(borders));
   
     return(g)
-    //return Object.assign(svg.node(), {scales: {color}});
   }
   export{Choropleth}

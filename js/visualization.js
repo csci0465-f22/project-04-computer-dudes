@@ -8,7 +8,7 @@ import {drawSocial} from "./social.js"
 async function manageVisualizations(){
 
     const size = { // visualization size
-      width: 700,
+      width: 700, //for choro size
       height: 700 }
     const speed = 1000; // animation speed
 
@@ -23,8 +23,8 @@ async function manageVisualizations(){
       .style("height", `${size.height}px`)
       .style("width", `${size.width}px`);
     
-    var choroData = await d3.csv("../data/stateDataOnly.csv");
-    const graph1 = loadCounties(choroData, svg);
+    var choroData = await d3.csv("../data/County_Data.csv");
+    const choromap = loadCounties(choroData, svg);
      const radar = RadarChart(svg, size)
                     .attr('opacity', 0);
     
@@ -40,10 +40,10 @@ async function manageVisualizations(){
       switch(section){
         case 0:
           radar.transition().attr("opacity", 0).duration(speed);
-          graph1;
+          choromap;
           break;
         case 1:
-          //graph1.transition().attr("opacity", 0).duration(speed);
+          //choromap.transition().attr("opacity", 0).duration(speed);
           radar.transition().attr("opacity", 1).duration(speed);
           socialChart.transition().attr("opacity", 0).duration(speed)
           break;
@@ -64,25 +64,25 @@ async function manageVisualizations(){
   }
 manageVisualizations();
 
-async function loadCounties(data) {
+async function loadCounties(data, svg) {
   const response = await fetch('/data/counties-albers-10m.json');
   const us = await response.json();
   const counties = topojson.feature(us, us.objects.counties);
   const states = topojson.feature(us, us.objects.states);
   const statemap = new Map(states.features.map(d => [d.id,d]));
   const statemesh = topojson.mesh(us, us.objects.states, (a, b) => a !== b);
+  const newdata = data.filter(function(d){ return (d.State ==  "North Dakota" | d.State == "West Virginia")});
 
-  var graph1 = Choropleth(data, {
-    id: d => d.id,
-    value: d => d.rate,
+  return Choropleth(newdata, svg, {
+    id: d => d["FIPS"],
+    value: d => d["Average Number of Mentally Unhealthy Days"],
     scale: d3.scaleQuantize,
     domain: [1, 10],
-    range: d3.schemeBlues[9],
-    title: (f, d) => `${f.properties.name}, ${statemap.get(f.id.slice(0, 2)).properties.name}\n${d?.rate}%`,
+    range: d3.schemeReds[9],
+    //title: (f, d) => `${f.properties.name}, ${statemap.get(f.id.slice(0, 2)).properties.name}\n${d?.rate}%`,
     features: counties,
     borders: statemesh,
     width: 975,
     height: 610
   });
-  return us;
 }
