@@ -27,8 +27,8 @@ async function manageVisualizations(){
     var newData = choroData.filter(function(d){ return (d.State ==  "North Dakota" | d.State == "West Virginia")});
 
     var choromap = await loadCounties(choroData, svg);
+    choromap.attr('opacity', 0);
     var isolatedmap = await loadCounties(newData, svg);
-    choromap.attr('opacity', 1);
     isolatedmap.attr('opacity', 0); 
 
     const radar = RadarChart(svg, size)
@@ -51,7 +51,7 @@ async function manageVisualizations(){
           setTimeout(() => {
             choromap.transition().attr('opacity', 0).duration(speed*3/2);
             isolatedmap.transition().attr('opacity', 1).duration(speed*4/2);
-          }, 1500);
+          }, 2000);
           
           break;
         case 1:
