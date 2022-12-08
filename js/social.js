@@ -8,24 +8,19 @@ function drawSocial(g) {
  
 const numPerRow = 6;
 
-// const svg = d3.select("#vis")
-//  .append("svg")
-//  .attr("viewbox", [0, 0, width, height])
-//  .style("height", `${height}px`)
-//  .style("width", '${width}px');
+//const graph = svg.append("g").attr("opacity",0)
 
-//const graph = svg.append("g")
-
-const xPos = 200;
+const xPos = 150;
 const yPos1 = -30;
 const yPos2 = 150;
 
-const image = g.append("image")
+g.append("image")
  .attr("x", xPos)
  .attr("y", yPos1)
  .attr("width", "150px")
  .attr("height", "300px")
- .attr("href", "./data/001-standing-up-man.png");
+ .attr("href", "./data/001-standing-up-man.png")
+ .attr("fill", "white");
 
 g.append("image")
  .attr("x", xPos)
@@ -47,6 +42,7 @@ for(let i = 0; i < 4; i++) {
    .attr("width", "20px")
    .attr("height", "40px")
    .attr("href", "./data/001-standing-up-man.png")
+   //.attr("fill", "white")
  }
 }
 
@@ -61,67 +57,69 @@ for(let i = 0; i < 10; i++) {
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(770, 130)`)
+  .attr("transform", `translate(600, 130)`)
   .style("font-weight", "bold")
-  .style("fill", "black")
-  .style("font-size", "100px")
+  .style("fill", "white")
+  .style("font-size", "80px")
   .text("47")
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(770, 160)`)
+  .attr("transform", `translate(600, 160)`)
   .style("font-weight", "normal")
-  .style("fill", "black")
+  .style("fill", "white")
   .style("font-size", "20px")
   .text("daily associations")
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(760, 315)`)
+  .attr("transform", `translate(590, 315)`)
   .style("font-weight", "bold")
-  .style("fill", "black")
+  .style("fill", "white")
   .style("font-size", "100px")
   .text("10")
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(760, 345)`)
+  .attr("transform", `translate(590, 345)`)
   .style("font-weight", "normal")
-  .style("fill", "black")
+  .style("fill", "white")
   .style("font-size", "20px")
   .text("daily associations")
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(120, 120)`)
+  .attr("transform", `translate(80, 120)`)
   .style("font-weight", "normal")
-  .style("fill", "black")
+  .style("fill", "white")
   .style("font-size", "20px")
-  .text("Steele County,")
+  .text("Williams County,")
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(120, 140)`)
+  .attr("transform", `translate(80, 140)`)
   .style("font-weight", "normal")
-  .style("fill", "black")
+  .style("fill", "white")
   .style("font-size", "20px")
   .text("North Dakota")
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(120, 290)`)
+  .attr("transform", `translate(80, 290)`)
   .style("font-weight", "normal")
-  .style("fill", "black")
+  .style("fill", "white")
   .style("font-size", "20px")
   .text("McDowell County,")
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(120, 310)`)
+  .attr("transform", `translate(80, 310)`)
   .style("font-weight", "normal")
-  .style("fill", "black")
+  .style("fill", "white")
   .style("font-size", "20px")
   .text("West Virginia")
+
+return(g);
 
 }
 

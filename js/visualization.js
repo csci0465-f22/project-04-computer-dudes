@@ -2,6 +2,7 @@ import{Choropleth} from "./choropleth.js"
 import{RadarChart} from "./radarchart.js"
 import{BarChart} from "./barchart.js"
 import * as topojson from "https://cdn.skypack.dev/topojson@3.0.2"; 
+import {drawSocial} from "./social.js"
 
 
 async function manageVisualizations(){
@@ -31,6 +32,9 @@ async function manageVisualizations(){
     const bar = BarChart(rawbardata, svg, size)
                   .attr('opacity', 0).attr('transform', "translate(50,150)");
     
+    const socialChart = svg.append('g')
+    drawSocial(socialChart).attr('opacity', 0)
+    
     scroll(d3.selectAll("section"));
     scroll.on("section-change", (section)=>{
       switch(section){
@@ -41,14 +45,18 @@ async function manageVisualizations(){
         case 1:
           //graph1.transition().attr("opacity", 0).duration(speed);
           radar.transition().attr("opacity", 1).duration(speed);
+          socialChart.transition().attr("opacity", 0).duration(speed)
           break;
         case 2:
           radar.transition().attr("opacity", 0).duration(speed);
           bar.transition().attr("opacity", 0).duration(speed);
-          
+          socialChart.transition().attr("opacity", 1).duration(speed)
+          console.log(socialChart)
+          console.log(2)
           break;
         case 3:
           bar.transition().attr("opacity", 1).duration(speed);
+          socialChart.transition().attr("opacity", 0).duration(speed)
           break;
           //console.log("uh");
       }
