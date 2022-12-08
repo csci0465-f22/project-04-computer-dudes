@@ -10,7 +10,7 @@ async function manageVisualizations(){
     const size = { // visualization size
       width: 700, //for choro size
       height: 700 }
-    const speed = 1000; // animation speed
+    const speed = 750; // animation speed
 
     const scroll = scroller();
     const svg = d3.select("#vis")
@@ -47,26 +47,26 @@ async function manageVisualizations(){
       switch(section){
         case 0:
           radar.transition().attr("opacity", 0).duration(speed);
-          choromap.transition().attr('opacity', 1).duration(speed);
+          choromap.transition().attr('opacity', 1).duration(speed*4);
           setTimeout(() => {
             choromap.transition().attr('opacity', 0).duration(speed*3/2);
             isolatedmap.transition().attr('opacity', 1).duration(speed*4/2);
-          }, 1000);
+          }, 1500);
           
           break;
         case 1:
           isolatedmap.transition().attr("opacity", 0).duration(speed);
-          radar.transition().attr("opacity", 1).duration(speed);
+          radar.transition().attr("opacity", 1).duration(speed*4);
           socialChart.transition().attr("opacity", 0).duration(speed)
           choromap.transition().attr('opacity', 0).duration(speed);
           break;
         case 2:
           radar.transition().attr("opacity", 0).duration(speed);
           bar.transition().attr("opacity", 0).duration(speed);
-          socialChart.transition().attr("opacity", 1).duration(speed);
+          socialChart.transition().attr("opacity", 1).duration(speed*4);
           break;
         case 3:
-          bar.transition().attr("opacity", 1).duration(speed);
+          bar.transition().attr("opacity", 1).duration(speed*4);
           socialChart.transition().attr("opacity", 0).duration(speed);
           break;
         case 4: 
