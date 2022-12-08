@@ -49,9 +49,9 @@ async function manageVisualizations(){
           radar.transition().attr("opacity", 0).duration(speed);
           choromap.transition().attr('opacity', 1).duration(speed);
           setTimeout(() => {
-            choromap.transition().attr('opacity', 0).duration(speed*3);
-            isolatedmap.transition().attr('opacity', 1).duration(speed*4);
-          }, 2000);
+            choromap.transition().attr('opacity', 0).duration(speed*3/2);
+            isolatedmap.transition().attr('opacity', 1).duration(speed*4/2);
+          }, 1000);
           
           break;
         case 1:
