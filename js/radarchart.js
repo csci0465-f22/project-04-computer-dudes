@@ -85,7 +85,7 @@ export function RadarChart(svg, size) {
 	var allAxis = (data[0].map(function(i, j){return i.axis})),	//Names of each axis
 		total = allAxis.length,					//The number of different axes
 		radius = Math.min(cfg.w/2, cfg.h/2), 	//Radius of the outermost circle
-		Format = d3.format('%'),			 	//Percentage formatting
+		Format = d3.format('.0%'),			 	//Percentage formatting
 		angleSlice = Math.PI * 2 / total;		//The width in radians of each "slice"
 	
 	//Scale for the radius
@@ -152,9 +152,9 @@ export function RadarChart(svg, size) {
 	   .attr("x", 4)
 	   .attr("y", function(d){return -d*radius/cfg.levels;})
 	   .attr("dy", "0.4em")
-	   .style("font-size", "10px")
+	   .style("font-size", "12px")
 	   .attr("fill", "white")
-	   .text(function(d,i) { return Format((maxValue * d/cfg.levels)); });
+	   .text(function(d,i) { return Format((maxValue * d/cfg.levels).toFixed(2)); });
 
 	/////////////////////////////////////////////////////////
 	//////////////////// Draw the axes //////////////////////

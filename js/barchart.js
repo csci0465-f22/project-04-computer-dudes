@@ -17,11 +17,43 @@ function genChart(data, dom, svg, size, color, yTitle, yTitleOffset){
   g.selectAll("rect") // can add a class here to add :hover customization?
     .data(data)
     .join("rect")
-    .attr("x", d => x(d.title))
+    .attr("x", d => x(d.title)+5)
     .attr("y", d => y(+d.value))
-    .attr("width", x.bandwidth())
+    .attr("width", x.bandwidth()-10)
     .attr("height", d=> y(dom[1]-d.value)-margin.top)
-    .style("fill", color);
+    .style("fill", 'grey')
+    .each(function(d) {
+      if(yTitle === 'Average Travel Time to Work (min)'){
+        for (let i = y(+d.value)+5; i < height - margin.bottom-20; i+=40) {
+          g.append("rect")
+          .attr("x", x(d.title)+30)
+          .attr("y", i)
+          .attr("width", "5")
+          .attr("height", "20")
+          .style("fill", 'yellow');
+        }
+        g.append("image") //https://icons8.com/icons/set/car-top
+          .attr("x", x(d.title)+6)
+          .attr("y", y(d.value)+12)
+          .attr("width", "50px")
+          .attr("href", "./data/icons8-car-top-view-96.png");
+      }
+      else if(yTitle === "Median Household Income ($)"){
+        for (let i = height - margin.bottom-60; i > y(+d.value)-7; i-=17) {// build the stack
+          g.append("image") //https://icons8.com/icons/set/stacked-dollar-bills
+            .attr("x", x(d.title)-1)
+            .attr("y", i)
+            .attr("width", "67px")
+            .attr("href", "./data/icons8-stack-of-money-96.png");
+        }
+        g.append("image") //https://icons8.com/icons/set/stacked-dollar-bills
+            .attr("x", x(d.title)-1)
+            .attr("y", y(+d.value)-10)
+            .attr("width", "67px")
+            .attr("href", "./data/icons8-stack-of-money-96.png");
+      }
+    })
+    //.each(addArt(g, d => x(d.title), d => y(+d.value), x.bandwidth));
   
   // Draw the axes
   const xAxis = g.append("g")
@@ -37,11 +69,12 @@ function genChart(data, dom, svg, size, color, yTitle, yTitleOffset){
   const yAxis = g.append("g")
     .attr("transform", `translate(${margin.left}, 0)`)
     .call(d3.axisLeft(y))
-    .attr('color', 'white');
+    .attr('color', color);
 
+  /*
   g.selectAll("text")
     .style("font-size","12px")
-    .style("fill", color)
+    .style("fill", color)*/
   
     // label the graph
     g.append("text")
@@ -51,13 +84,13 @@ function genChart(data, dom, svg, size, color, yTitle, yTitleOffset){
     .attr("transform", `translate(${margin.left-yTitleOffset}, ${height/2}) rotate(-90)`)
     .text(yTitle)
     .style('fill', 'white');
-
+  /*
   g.append("text")
       .attr("text-anchor", "middle")
       .attr("transform", `translate(${width/2}, ${height - 60})`)
       .text("County")
       .style('fill', 'white');
-
+  */
   return(g);
 }
 
