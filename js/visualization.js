@@ -33,7 +33,7 @@ async function manageVisualizations(){
                   .attr('opacity', 0).attr('transform', "translate(50,150)");
     
     const socialChart = svg.append('g')
-    drawSocial(socialChart).attr('opacity', 0)
+    drawSocial(socialChart, size).attr('opacity', 0)
     
     scroll(d3.selectAll("section"));
     scroll.on("section-change", (section)=>{

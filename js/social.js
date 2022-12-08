@@ -1,33 +1,30 @@
-function drawSocial(g) {
+function drawSocial(g, size) {
 
- const width = 1000;
- const height = 400;
+ const width = size.width;
+ const height = size.height;
  const margin = {left:10, right: 15, top: 2, bottom: 40};
-
-//<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
  
 const numPerRow = 6;
-
+// <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 //const graph = svg.append("g").attr("opacity",0)
 
 const xPos = 150;
-const yPos1 = -30;
-const yPos2 = 150;
+const yPos1 = 120;
+const yPos2 = 300;
 
 g.append("image")
- .attr("x", xPos)
- .attr("y", yPos1)
+ .attr("x", width - 550)
+ .attr("y", height - 580)
  .attr("width", "150px")
  .attr("height", "300px")
- .attr("href", "./data/001-standing-up-man.png")
- .attr("fill", "white");
+ .attr("href", "./data/001-standing-up-man 2.png")
 
 g.append("image")
- .attr("x", xPos)
- .attr("y", yPos2)
+ .attr("x", width - 550)
+ .attr("y", height - 400)
  .attr("width", "150px")
  .attr("height", "300px")
- .attr("href", "./data/001-standing-up-man.png")
+ .attr("href", "./data/001-standing-up-man 2.png")
 
 let count = 0;
 for(let i = 0; i < 4; i++) {
@@ -37,8 +34,8 @@ for(let i = 0; i < 4; i++) {
     break;
   }
   g.append("image")
-   .attr("x", xPos + j*20 + 120)
-   .attr("y", yPos1 + i*40 + 70)
+   .attr("x", width - 430 + j*20)
+   .attr("y", width - 510 + i*40)
    .attr("width", "20px")
    .attr("height", "40px")
    .attr("href", "./data/001-standing-up-man.png")
@@ -48,8 +45,8 @@ for(let i = 0; i < 4; i++) {
 
 for(let i = 0; i < 10; i++) {
   g.append("image")
-    .attr("x", xPos + i*20 + 120)
-    .attr("y", yPos2 + 85)
+    .attr("x", width - 430 + i*20)
+    .attr("y", height - 315)
     .attr("width", "20px")
     .attr("height", "40px")
     .attr("href", "./data/001-standing-up-man.png")
@@ -57,7 +54,7 @@ for(let i = 0; i < 10; i++) {
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(600, 130)`)
+  .attr("transform", `translate(600, 290)`)
   .style("font-weight", "bold")
   .style("fill", "white")
   .style("font-size", "80px")
@@ -65,7 +62,7 @@ g.append("text")
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(600, 160)`)
+  .attr("transform", `translate(600, 320)`)
   .style("font-weight", "normal")
   .style("fill", "white")
   .style("font-size", "20px")
@@ -73,7 +70,7 @@ g.append("text")
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(590, 315)`)
+  .attr("transform", `translate(590, 475)`)
   .style("font-weight", "bold")
   .style("fill", "white")
   .style("font-size", "100px")
@@ -81,7 +78,7 @@ g.append("text")
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(590, 345)`)
+  .attr("transform", `translate(590, 505)`)
   .style("font-weight", "normal")
   .style("fill", "white")
   .style("font-size", "20px")
@@ -89,7 +86,7 @@ g.append("text")
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(80, 120)`)
+  .attr("transform", `translate(80, 270)`)
   .style("font-weight", "normal")
   .style("fill", "white")
   .style("font-size", "20px")
@@ -97,7 +94,7 @@ g.append("text")
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(80, 140)`)
+  .attr("transform", `translate(80, 300)`)
   .style("font-weight", "normal")
   .style("fill", "white")
   .style("font-size", "20px")
@@ -105,7 +102,7 @@ g.append("text")
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(80, 290)`)
+  .attr("transform", `translate(80, 450)`)
   .style("font-weight", "normal")
   .style("fill", "white")
   .style("font-size", "20px")
@@ -113,7 +110,7 @@ g.append("text")
 
 g.append("text")
   .attr("text-anchor", "middle")
-  .attr("transform", `translate(80, 310)`)
+  .attr("transform", `translate(80, 480)`)
   .style("font-weight", "normal")
   .style("fill", "white")
   .style("font-size", "20px")
