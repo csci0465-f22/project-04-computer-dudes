@@ -25,7 +25,7 @@ async function manageVisualizations(){
     
     var choroData = await d3.csv("../data/County_Data.csv");
     const choromap = await loadCounties(choroData, svg);
-    choromap.attr('opacity', 1);
+    choromap.attr('opacity', 0);
 
     const radar = RadarChart(svg, size)
                     .attr('opacity', 0);
@@ -39,6 +39,7 @@ async function manageVisualizations(){
     
     scroll(d3.selectAll("section"));
     scroll.on("section-change", (section)=>{
+      console.log(section);
       switch(section){
         case 0:
           radar.transition().attr("opacity", 0).duration(speed);
@@ -59,7 +60,8 @@ async function manageVisualizations(){
           bar.transition().attr("opacity", 1).duration(speed);
           socialChart.transition().attr("opacity", 0).duration(speed);
           break;
-          //console.log("uh");
+        case 4: 
+          bar.transition().attr("opacity", 0).duration(speed);
       }
     });
   }

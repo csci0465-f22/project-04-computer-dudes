@@ -16,15 +16,26 @@
       <div id="sections">
 
         <section>
-          <h2 style="color: white"> Plotting Mental Health by County </h2>
+          <div style="display: flex; flex-direction: row;">
+            <h2 style="color: white; margin-right: 5px;"> 
+              Plotting 
+            </h2>
+            <h2 style="color: #ff6262; margin-right: 5px;"> 
+              Mental Health
+            </h2>
+            <h2 style="color: white; margin-right: 5px;"> 
+              by County
+            </h2>
+          </div>
           <p style="color: rgb(222, 222, 222)"> 
             This choropleth graphs the number of average poor mental health days by county
             across the United States. Looking at the graph, we determined that West Virginia
-            shows the highest concentration of larger values, and North Dakota seems to rank
+            shows the highest concentration of larger values and North Dakota seems to rank
             the best. To get even more specific, we can analyze the most extreme cases in each state: 
             Williams County (North Dakota) and McDowell County (West Virginia). We will use these counties
-            as case examples to convey how social community and workplace experience define regional mental 
-            health statistics. 
+            as case examples to convey how social community and workplace experience statistics correlate 
+            with regional mental health. To get specific, the average number of poor mental health days per month
+            in Williams County is 3.33, compared to McDowell's 7.46.
           </p>
           
           <p style="color: rgb(222, 222, 222)">
@@ -32,64 +43,86 @@
             to analyze various quality of life metrics as they relate to mental health.
           </p>
 
-          <p style="color:rgb(222, 222, 222)">
+          <p style="color:rgb(118, 3, 3); margin-top: 150px">
             Remaining to-do: add a legend, potential animation to grayscale or zoom
           </p>
         </section>
 
         <section>
-          <h2 style="color: white"> McDowell County, WV and Williams County, ND at a Glance  </h2>
-          <p style="color: rgb(222, 222, 222)"> An initial comparison of Williams 
-          Count and McDowell shows their similarity in many statistics one 
-        may initially point to for impacting mental health of an area. 
-        Both areas have similar unemployment rates, insufficient sleep, and
-        obesity rates, leaving us to focus on other metrics.</p>
+          <div style="display: flex; flex-direction: row;">
+            <h2 style="color: #feee61; margin-right: 5px;"> 
+              McDowell
+            </h2>
+            <h2 style="color: white; margin-right: 5px;"> 
+              vs 
+            </h2>
+            <h2 style="color: #ff6262; margin-right: 5px;"> 
+              Williams
+            </h2>
+            <h2 style="color: white"> 
+              County at a Glance  
+            </h2>
+          </div>
+          <p style="color: rgb(222, 222, 222)"> 
+            This radar chart visualizes a comparison of Williams County and McDowell County across five statistics that
+            we considered potentially relevant to mental health. Looking at the grpah, we can see that both areas show
+            similar rates for unemployment, insufficient sleep, and obesity, but that there are significant proportional
+            differences in poverty and socialization rates.
+          </p>
 
-        <p style="color: white">Seeing that nothing from obesity, 
-        unemployment, or sleep stand out, notice the striking difference
-        in both poverty and social community. Although social community may 
-        stand out less, this is just due to the scale of the visualization. 
-        In terms of ratio from one to another, Williams County dominates 
-        McDowell in this statistic. So, if the residents of both counties 
-        are employed at similar rates and in similar physical health, we 
-        point the finger at the quality of jobs and social community of each 
-        county as being the driving force in the disparity in mental health.</p>
+          <p style="color: rgb(222, 222, 222)">
+            Although the social score difference may be less initially stark, this is because both percentages are numerically smaller. 
+            In terms of ratio, Williams County dominates McDowell in this statistic. Given that 
+            the residents of both counties are employed at similar rates and that physical health differences are nonsignificant, 
+            we can point to job quality and the sociability of each community as a significant influence
+            on the respective disparities in mental health.
+          </p>
+
+          <p style="color:rgb(118, 3, 3); margin-top: 150px">
+            Remaining to-do: graph legend, future customization
+          </p>
+
         </section>
 
         <section>
-          <h2 style="color: white">Social Life</h2>
+          <h2 style="color: #c4fa98">Social Life</h2>
 
-          <p style="color: white">Due to the extremely rural nature of
-            each county, one may expect the social aspect of each to be
+          <p style="color: rgb(222, 222, 222)">Due to the rural nature of
+            each county, one may expect the socialiability scores of each to be
             similar. This however, is not the case. Residents of Williams
-            County reported to have interacted with an average of 47
-            people per day. Although this number may be small compared to
+            County reported that they interact with an average of 47
+            people per day. And although this number may be small compared to
             the likes of a city, it dwarves the 10 observed in McDowell
             County. Additionally, we cite Dunbar's Number which claims that
             a person can maintain 150 relationships as evidence that
             interacting with 47 people daily may very well provides a
-            healthy social life. This claim is backed up by the strong mental
-            health seen across Williams County.</p>
+            healthy social life.</p>
         </section>
 
         <section>
-          <h2 style="color: white">Job Quality</h2>
-          <p style="color: white">In addition to social life we a see an 
-          impactful disparity across counties in job quality. Poverty may 
-          have been a tell tale sign of this, but the disparity goes much 
-          deeper that that. Beyond a higher median income, people in 
-          Williams County have on average a much shorter commute to work. 
-          Further, across both respective states as a whole, workers in 
-          North Dakota typically have a much higher satisfaction with their 
-          jobs. Putting all of this together, it comes as no surprise that 
-          the county where people maintain a healthy social life as well as 
-          enjoying a short commute to a well paying job they love each day 
-          performs so strongly in mental health measures.</p>
+          <h2 style="color: rgb(255, 179, 47)">Job Quality</h2>
+          <p style="color: rgb(222, 222, 222)">
+            In addition to social life variability between the counties, we a see an 
+            impactful disparity in job quality. Poverty rate is a sure marker of this, 
+            but we can get more specific. Beyond a higher median income, people in 
+            Williams County have a much shorter (average) commute to work and workers in 
+            North Dakota typically have a much higher satisfaction with their 
+            jobs. Putting all of this together, it comes as no surprise that 
+            the county where people maintain healthy social lives paired with less
+            draining work days and higher pay performs so much more strongly in mental health 
+            measures.
+          </p>
+          <p style="color:rgb(118, 3, 3); margin-top: 150px">
+            Remaining to-do: customize the bottom two graphs
+          </p>
         </section>
 
         <section>
-          <h2 style="color: white"> Citations </h2>
-          <p style="color: white"> </p>
+          <h2 style="color: #929292"> Citations </h2>
+          <p style="color: rgb(222, 222, 222)"> </p>
+          <p style="color:rgb(118, 3, 3); margin-top: 150px">
+            Remaining to-do: add citations for data and images
+          </p>
         </section>
 
       </div>
