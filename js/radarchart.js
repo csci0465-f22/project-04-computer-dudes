@@ -16,14 +16,13 @@
 ////////////////////////// Data ////////////////////////////// 
 ////////////////////////////////////////////////////////////// 
 
-function RadarChart() {
-
-	var id="#vis"
+export function RadarChart(svg, size) {
+	
 	var margin = {top: 100, right: 100, bottom: 100, left: 100},
 	width = Math.min(700, window.innerWidth - 10) - margin.left - margin.right,
 	height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
-	var color = d3.scaleOrdinal()
-	.range(["#EDC951","#CC333F","#00A0B0"]); 
+
+	var color = d3.scaleOrdinal().range(["#EDC951","#CC333F","#00A0B0"]); 
 	var options = {
 		w: width,
 		h: height,
@@ -35,24 +34,31 @@ function RadarChart() {
 		};
 
 	var data = [
-		[// King County, WA
-		{axis:"% Insufficient Sleep",value:100*3.24/30},
-		{axis:"% No College",value:3.69},
-		{axis:"% Fair or Poor Health",value:12.7},
-		{axis:"Avg % Mentally Unhealthy Days",value:100-82.11},
-		{axis:"Avg % Physically Unhealthy Days",value:30.31}	
-		],[// McDowell County, WV
-		{axis:"% Insufficient Sleep",value:100*7.21/30},
-		{axis:"% No College",value:7.46},
-		{axis:"% Fair or Poor Health",value:37.5},
-		{axis:"Avg % Mentally Unhealthy Days",value:100-26.78},
-		{axis:"Avg % Physically Unhealthy Days",value:47.38}	
+		[// Williams County, ND- Mental health bad days: 3.3
+		{axis:"% Obesity", value: .38},
+		//{axis:"% Some College", value: .61},
+		{axis:"% Unemployed", value: .096},
+		{axis:"% Insufficient Sleep", value: .34},
+		{axis:"% Poverty", value: .098},
+		{axis:"% Sociability", value: .141}
+		
+		],[// McDowell County, WV- Mental health bad days: 7.2
+		{axis:"% Obesity", value: .46},
+		//{axis:"% Some College", value: .27},
+		{axis:"% Unemployed", value: .126},
+		{axis:"% Insufficient Sleep", value: .47},
+		{axis:"% Poverty", value: .376},
+		{axis:"% Sociability", value: .0512}
+		
+		//{axis:"% Fair or Poor Health",value:37.5},
+		//{axis:"Avg % Mentally Unhealthy Days",value:100-26.78},
+		//{axis:"Avg % Physically Unhealthy Days",value:47.38}	
 		]
 	];
 
 	var cfg = {
-	 w: 600,				//Width of the circle
-	 h: 600,				//Height of the circle
+	 w: size.width,				//Width of the circle
+	 h: size.height,				//Height of the circle
 	 margin: {top: 20, right: 20, bottom: 20, left: 20}, //The margins of the SVG
 	 levels: 3,				//How many levels or inner circles should there be drawn
 	 maxValue: 0, 			//What is the value that the biggest circle will represent
@@ -92,16 +98,21 @@ function RadarChart() {
 	/////////////////////////////////////////////////////////
 
 	//Remove whatever chart with the same id/class was present before
-	d3.select(id).select("svg").remove();
+	//d3.select(id).select("svg").remove();
 	
 	//Initiate the radar chart SVG
-	var svg = d3.select(id).append("svg")
+	/*var svg = d3.select(id).append("svg")
 			.attr("width",  cfg.w + cfg.margin.left + cfg.margin.right)
 			.attr("height", cfg.h + cfg.margin.top + cfg.margin.bottom)
-			.attr("class", "radar"+id);
-	//Append a g element		
+			.attr("class", "radar"+id)
+			.attr("id", "#radar-chart");
+	//Append a g element
+	*/
+	//svg.attr("width",  cfg.w + cfg.margin.left + cfg.margin.right)
+	//   .attr("height", cfg.h + cfg.margin.top + cfg.margin.bottom)
 	var g = svg.append("g")
-			.attr("transform", "translate(" + (cfg.w/2 + cfg.margin.left) + "," + (cfg.h/2 + cfg.margin.top) + ")");
+				.attr("id", "radar-chart")
+				.attr("transform", "translate(" + (cfg.w/2 + cfg.margin.left) + "," + (cfg.h/2 + cfg.margin.top) + ")");
 	
 	/////////////////////////////////////////////////////////
 	////////// Glow filter for some extra pizzazz ///////////
@@ -142,8 +153,8 @@ function RadarChart() {
 	   .attr("y", function(d){return -d*radius/cfg.levels;})
 	   .attr("dy", "0.4em")
 	   .style("font-size", "10px")
-	   .attr("fill", "#737373")
-	   .text(function(d,i) { return Format(maxValue * d/cfg.levels); });
+	   .attr("fill", "white")
+	   .text(function(d,i) { return Format((maxValue * d/cfg.levels)); });
 
 	/////////////////////////////////////////////////////////
 	//////////////////// Draw the axes //////////////////////
@@ -173,6 +184,7 @@ function RadarChart() {
 		.attr("dy", "0.35em")
 		.attr("x", function(d, i){ return rScale(maxValue * cfg.labelFactor) * Math.cos(angleSlice*i - Math.PI/2); })
 		.attr("y", function(d, i){ return rScale(maxValue * cfg.labelFactor) * Math.sin(angleSlice*i - Math.PI/2); })
+		.attr("fill", "white")
 		.text(function(d){return d})
 		.call(wrap, cfg.wrapWidth);
 
@@ -283,7 +295,7 @@ function RadarChart() {
 		.attr("class", "tooltip")
 		.style("opacity", 0);
 	
-	return(svg);
+	return(g);
 
 	/////////////////////////////////////////////////////////
 	/////////////////// Helper Function /////////////////////
@@ -291,6 +303,7 @@ function RadarChart() {
 
 	//Taken from http://bl.ocks.org/mbostock/7555321
 	//Wraps SVG text	
+	
 	function wrap(text, width) {
 	  text.each(function() {
 		var text = d3.select(this),
@@ -317,4 +330,3 @@ function RadarChart() {
 	  });
 	}//wrap	
 }
-export{RadarChart}

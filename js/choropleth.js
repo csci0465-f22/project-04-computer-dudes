@@ -1,7 +1,7 @@
 // Copyright 2021 Observable, Inc.
 // Released under the ISC license.
 // https://observablehq.com/@d3/choropleth
-function Choropleth(data, {
+function Choropleth(data, svg, {
     id = d => d.id, // given d in data, returns the feature id
     value = () => undefined, // given d in data, returns the quantitative value
     title, // given a feature f and possibly a datum d, returns the hover text
@@ -24,6 +24,11 @@ function Choropleth(data, {
     strokeWidth, // stroke width for borders
     strokeOpacity, // stroke opacity for borders
   } = {}) {
+    
+    //Initiate the choropleth SVG
+    var g = svg.append("g")
+                .attr('id', 'choro');
+
     // Compute values.
     const N = d3.map(data, id);
     const V = d3.map(data, value).map(d => d == null ? NaN : +d);
@@ -63,18 +68,18 @@ function Choropleth(data, {
     // Construct a path generator.
     const path = d3.geoPath(projection);
   
-    const svg = d3.create("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("viewBox", [0, 0, width, height])
-        .attr("style", "width: 100%; height: auto; height: intrinsic;");
+    // const svg = d3.create("svg")
+    //     .attr("width", width)
+    //     .attr("height", height)
+    //     .attr("viewBox", [0, 0, width, height])
+    //     .attr("style", "width: 100%; height: auto; height: intrinsic;");
   
-    if (outline != null) svg.append("path")
+    if (outline != null) g.append("path")
         .attr("fill", fill)
         .attr("stroke", "currentColor")
         .attr("d", path(outline));
   
-    svg.append("g")
+    g.append("g")
       .selectAll("path")
       .data(features.features)
       .join("path")
@@ -83,7 +88,7 @@ function Choropleth(data, {
       .append("title")
         .text((d, i) => title(d, Im.get(If[i])));
   
-    if (borders != null) svg.append("path")
+    if (borders != null) g.append("path")
         .attr("pointer-events", "none")
         .attr("fill", "none")
         .attr("stroke", stroke)
@@ -93,7 +98,7 @@ function Choropleth(data, {
         .attr("stroke-opacity", strokeOpacity)
         .attr("d", path(borders));
   
-    return(svg)
+    return(g)
     //return Object.assign(svg.node(), {scales: {color}});
   }
   export{Choropleth}
