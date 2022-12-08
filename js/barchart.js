@@ -17,9 +17,9 @@ function genChart(data, dom, svg, size, color, yTitle, yTitleOffset){
   g.selectAll("rect") // can add a class here to add :hover customization?
     .data(data)
     .join("rect")
-    .attr("x", d => x(d.title)+5)
+    .attr("x", d => (yTitle === "Avg. Work Week (h)") ? x(d.title)+25:x(d.title)+5)
     .attr("y", d => y(+d.value))
-    .attr("width", x.bandwidth()-10)
+    .attr("width", (yTitle === "Avg. Work Week (h)") ? x.bandwidth()-50 : x.bandwidth()-10)
     .attr("height", d=> y(dom[1]-d.value)-margin.top)
     .style("fill", color)
     .each(function(d) {
@@ -53,8 +53,16 @@ function genChart(data, dom, svg, size, color, yTitle, yTitleOffset){
             .attr("href", "./data/icons8-stack-of-money-96.png");
       }
       else if(yTitle === "Avg. Work Week (h)"){
+        g.append("image") //https://www.flaticon.com/free-icon/clock_2838590?term=clock&page=1&position=22&page=1&position=22&related_id=2838590&origin=search
+          .attr("x", x(d.title)+7)
+          .attr("y", y(d.value)-25)
+          .attr("width", "50px")
+          .attr("href", "./data/clock.png");
       }
       else if(yTitle === "Job Satisfaction"){
+      }
+      else{
+        console.log(yTitle);
       }
     })
     //.each(addArt(g, d => x(d.title), d => y(+d.value), x.bandwidth));
@@ -153,7 +161,7 @@ export function BarChart(rawdata, svg, size){
             .attr('transform',"translate(0, 0)");
     genChart(travelData, [0, 60], g, {width: size.width/2, height: size.height*3/5}, 'gray', 'Average Travel Time to Work (min)', 250)
             .attr('transform',"translate(300, 0)");
-    genChart(hoursData, [0, 50], g, {width: size.width/2, height: size.height*3/5}, 'lightblue', 'Avg. Work Week (h)', 270)
+    genChart(hoursData, [0, 50], g, {width: size.width/2, height: size.height*3/5}, '#5aaaff', 'Avg. Work Week (h)', 270)
             .attr('transform',"translate(0, 340)");
     genChart(satisData, [0, 10], g, {width: size.width/2, height: size.height*3/5}, '#ffc43a', 'Job Satisfaction', 270)
             .attr('transform',"translate(300, 340)");        
